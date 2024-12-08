@@ -38,8 +38,8 @@ export async function postPredictHandler(req, res) {
         return res.status(201).json({
             status: "success",
             message: confidenceScore > 99
-                ? "Model predicted successfully"
-                : "Model predicted successfully",
+                ? "Model is predicted successfully"
+                : "Model is predicted successfully",
             data,
         });
     } catch (error) {
@@ -50,8 +50,8 @@ export async function postPredictHandler(req, res) {
 export async function predictHistories(req, res) {
     try {
         const db = new Firestore({
-            projectId: 'mlcc-4235f',
-            keyFilename: './submissionmlgc-zildirayalfirli-c305c2b95c93.json',
+            projectId: 'submissionmlgc-zildirayalfirli',
+            keyFilename: './submissionmlgc-zildirayalfirli-9c30488c4172.json',
         });
 
         const predictCollection = db.collection('predictions');
