@@ -3,9 +3,6 @@ import { predictClassification } from '../services/InferenceService.js';
 import { storeData } from '../services/storeData.js';
 import crypto from 'crypto';
 import { Firestore } from '@google-cloud/firestore';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export async function postPredictHandler(req, res) {
     try {
@@ -52,13 +49,9 @@ export async function postPredictHandler(req, res) {
 
 export async function predictHistories(req, res) {
     try {
-        const credentials = typeof process.env.FIRESTORE === 'string'
-            ? JSON.parse(process.env.FIRESTORE)
-            : process.env.FIRESTORE;
-
         const db = new Firestore({
-            projectId: credentials.project_id,
-            credentials,
+            projectId: 'mlcc-4235f',
+            keyFilename: './submissionmlgc-zildirayalfirli-c305c2b95c93.json',
         });
 
         const predictCollection = db.collection('predictions');
@@ -73,5 +66,4 @@ export async function predictHistories(req, res) {
         res.status(500).json({ status: "error", message: error.message });
     }
 }
-
 
